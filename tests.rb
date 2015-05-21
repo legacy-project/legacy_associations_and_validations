@@ -82,8 +82,28 @@ def test_course_with_many_students_should_not_be_deleted
   whitney = CourseStudent.create(course_id: biology.id)
 
   refute biology.destroy
-
 end
+
+def test_course_has_many_assignments
+  biology = Course.create(name: "Biology")
+
+  assignment_one = Assignment.create(course_id: biology.id)
+  assignment_two = Assignment.create(course_id: biology.id)
+
+  assert_equal 2, Assignment.count
+end
+
+def test_assignments_destroyed_when_course_is_destroyed
+  biology = Course.create(name: "Biology")
+
+  assignment_one = Assignment.create(course_id: biology.id)
+  assignment_two = Assignment.create(course_id: biology.id)
+
+  biology.destroy
+  assert_equal 0, Assignment.count
+end
+
+
 
 
 
