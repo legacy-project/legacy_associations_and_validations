@@ -7,6 +7,10 @@ class Lesson < ActiveRecord::Base
 
   after_save :update_cached_values
 
+  validates :name, presence: true
+
+
+
   def self.linked_to_assignment(assignment)
     found_lesson = where(pre_class_assignment_id: assignment.id).first
     found_lesson ||= where(in_class_assignment_id: assignment.id).first
