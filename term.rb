@@ -4,6 +4,8 @@ class Term < ActiveRecord::Base
 
   scope :for_school_id, ->(school_id) { where("school_id = ?", school_id) }
 
+  belongs_to :school
+
   def school_name
     school ? school.name : "None"
   end

@@ -25,4 +25,29 @@ class ApplicationTest < Minitest::Test
     assert true
   end
 
+  def test_false
+    refute false
+  end
+
+#Part A:
+
+def test_school_has_many_terms
+  school = School.create
+  summer = Term.create
+  fall = Term.create
+  spring = Term.create
+
+  summer.update(school_id: school.id)
+  fall.update(school_id: school.id)
+  spring.update(school_id: school.id)
+
+  assert_equal 3, school.terms.count
+end
+
+def test_terms_have_many_courses
+  
+
+
+
+
 end
