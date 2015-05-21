@@ -64,6 +64,27 @@ def test_term_with_courses_cannot_be_deleted
   refute spring.destroy
 end
 
+def test_course_has_many_course_students
+  biology = Course.create(name: "Biology")
+
+  jimmy = CourseStudent.create(course_id: biology.id)
+  jill = CourseStudent.create(course_id: biology.id)
+  whitney = CourseStudent.create(course_id: biology.id)
+
+  assert_equal 3, biology.course_students.count
+end
+
+def test_course_with_many_students_should_not_be_deleted
+  biology = Course.create(name: "Biology")
+
+  jimmy = CourseStudent.create(course_id: biology.id)
+  jill = CourseStudent.create(course_id: biology.id)
+  whitney = CourseStudent.create(course_id: biology.id)
+
+  refute biology.destroy
+
+end
+
 
 
 
