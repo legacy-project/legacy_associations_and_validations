@@ -152,7 +152,22 @@ class ApplicationTest < Minitest::Test
     end
   end
 
-  
+  # def test_courses_have_course_code_and_name
+  #   biology = Course.create(name: "Biology", course_code: "bio101")
+  #   history = Course.create(name: "History", course_code: "hist101")
+  #
+  #   assert biology
+  #   assert history
+  #
+  #   assert_raises(ActiveRecord::RecordInvalid) do
+  #     english = Course.create(name: nil, course_code: nil)
+  #   end
+  # end
+
+
+
+
+
 
 
 

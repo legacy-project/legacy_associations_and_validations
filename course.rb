@@ -14,6 +14,9 @@ class Course < ActiveRecord::Base
   has_many :course_students, dependent: :restrict_with_error
   has_many :assignments, dependent: :destroy
 
+  # validates :name, presence: true
+  # validates :course_code, presence: true
+
   def self.example_courses
     self.where(public: true).order("id DESC").first(5)
   end
