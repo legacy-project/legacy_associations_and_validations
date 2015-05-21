@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true, format: {with: /\w+@\w+.\w+/}
-  validates :photo_url, presence: true, if: :valid, format: {with: /\w+:\/\/[\w\W]+/, on: :valid_photo_url}
+  validates :photo_url, presence: true, if: :valid, format: {with: /\w+:\/\/[\w\W]+/}
 
   private def valid
     return false if photo_url.class == NilClass
