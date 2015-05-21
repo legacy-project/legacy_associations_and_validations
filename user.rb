@@ -15,13 +15,6 @@ class User < ActiveRecord::Base
     true
   end
 
-  private def valid_email
-    search = email.scan(/\w+@\w+.\w+/)
-    if search == ""
-      errors.add(:email, 'Invalid email')
-    end
-  end
-
   def full_name
     "#{title + " " if title}#{first_name} #{padded_middle_initial}#{last_name}"
   end
