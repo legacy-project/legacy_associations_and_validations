@@ -5,7 +5,11 @@ class Lesson < ActiveRecord::Base
   scope :without_day_assignments, -> { where("day_assignment_id IS NULL") }
   scope :without_night_assignments, -> { where("night_assignment_id IS NULL") }
 
-  after_save :update_cached_values
+  # after_save :update_cached_values
+  has_many :readings, dependent: :destroy
+  belongs_to :course
+  belongs_to :in_class_assignment
+
 
   validates :name, presence: true
 

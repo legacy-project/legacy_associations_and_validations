@@ -5,6 +5,23 @@ class User < ActiveRecord::Base
 
   default_scope { order('last_name, first_name') }
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true, uniqueness: true, format: {with: /\w+@\w+.\w+/}
+  validates :photo_url, presence: true, if: :valid, format: {with: /\w+:\/\/[\w\W]+/, on: :valid_photo_url}
+
+  private def valid
+    return false if photo_url.class == NilClass
+    true
+  end
+
+  private def valid_email
+    search = email.scan(/\w+@\w+.\w+/)
+    if search == ""
+      errors.add(:email, 'Invalid email')
+    end
+  end
+
   def full_name
     "#{title + " " if title}#{first_name} #{padded_middle_initial}#{last_name}"
   end
