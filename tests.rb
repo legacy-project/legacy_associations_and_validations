@@ -44,8 +44,27 @@ def test_school_has_many_terms
   assert_equal 3, school.terms.count
 end
 
-def test_terms_have_many_courses
-  
+def test_term_have_many_courses
+  fall = Term.create
+  spring = Term.create
+
+  biology = Course.create(name: "Biology", term_id: fall.id)
+  english = Course.create(name: "English", term_id: spring.id)
+
+  assert_equal 1, fall.courses.count
+  assert_equal 1, spring.courses.count
+end
+
+def test_term_with_courses_cannot_be_deleted
+  spring = Term.create
+  biology = Course.create(name: "Biology", term_id: spring.id)
+  english = Course.create(name: "English", term_id: spring.id)
+  math = Course.create(name: "Math", term_id: spring.id)
+
+  refute spring.destroy
+end
+
+
 
 
 
